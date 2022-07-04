@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Just Intonation</title>
+	<meta charset="utf-8">
+	<meta name="author" content="Jason Fleischer">
+	<meta name="description" content="Just Intonation Keyboard. Configure and play.">
+	<meta name='viewport' content='width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no'>
+	<meta name="theme-color" content="#000"/>
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon.png">
+	<link rel="stylesheet" href="css/bundle.css">
+	<link rel="manifest" href="manifest.json">
+	<link rel="apple-touch-icon" href="img/192.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="img/152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="img/180.png">
+	<link rel="apple-touch-icon" sizes="167x167" href="img/167.png">
+</head>
+<body>
+	<header>
+		<div id="page_name">Just Intonation</div>
+		<button id="kofi_button">
+			<img src="img/kofi.svg" width="25" height="25" alt="Buy Me a Coffee at ko-fi.com" />
+			<span >Support the Developer</span>
+		</button>
+		<button id="info_button" ><img id="info_button_svg" src="img/info_white.svg" width="16" height="19" alt="Info"/></button>
+	</header>
+	<div id="alert_container">
+		<div id="alert">
+			<div id="alert_header">
+				<h3 id="alert_title"></h3>
+				<button id="dismiss_alert_button" ><img height="16" id="dismiss_close_button_svg" src="img/close_white.svg" alt="Dismiss alert"/></button>
+			</div>
+			<div id="alert_contents"></div>
+		</div>
+	</div>
+	<main>
+		<article>
+			<div id="piano"></div>
+		</article>
+	</main>
+	<aside>
+		<article>
+			<table>
+				<tr>
+					<td>Sound Preset</td>
+					<td>
+						<div>
+							<button id="P1">P1</button>
+							<button id="P2">P2</button>
+							<button id="P3">P3</button>
+							<br/>
+							<button id="P4">P4</button>
+							<button id="P5">P5</button>
+							<button id="P6">P6</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><label id="volume" for="volumeRange"></label></td>
+					<td>
+						<input type="range" min="0" max="1000" value="1000" step="0.000001" class="slider" id="volumeRange" />
+					</td>
+				</tr>
+				<tr id="just_intonate">
+					<td class="checkbox-row">
+						<span>Just Intonation</span>
+					</td>
+					<td>
+						<label id="just_intonate_checkbox_switch" class="switch">
+							<input id="just_intonate_checkbox" type="checkbox" checked="true"/>
+							<span class="switch_track round" tabindex="0"></span>
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td id="note_type">Root Note</td>
+					<td><select id="note_type_select"></select></td>
+				</tr>
+				<!--<tr>
+					<td id="scale_type">Scale Type</td>
+					<td><select id="scale_type_select"></select></td>
+				</tr>-->
+			</table>
+		</article>
+		<article >
+			<table id="frequency_table">
+				<thead id="frequency_table_head"></thead>
+				<tbody id="frequency_table_body"></tbody>
+			</table>
+		</article>
+	</aside>
+	<script src="js/bundle.js"></script>
+</body>
+</html>

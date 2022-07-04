@@ -1,0 +1,28 @@
+{
+  "name": "just-intonation",
+  "version": "1.0.0",
+  "description": "Just Intonation Keyboard. Configure and play.",
+  "main": "js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonfleischer/just-intonation.git"
+  },
+  "keywords": [
+    "synth",
+    "just intonation",
+    "keyboard"
+  ],
+  "author": "Jason R. A. Fleischer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasonfleischer/just-intonation#readme"
+  },
+  "homepage": "https://jasonfleischer.github.io/just-intonation/",
+  "dependencies": {
+    "@jasonfleischer/log": "^1.0.0",
+    "@jasonfleischer/piano": "^1.0.0"
+  }
+}
