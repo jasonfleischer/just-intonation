@@ -138,4 +138,16 @@ strong {
 #frequency_table td:first-child, #frequency_table th:first-child  {
 	text-align: left;
 }
+#frequency_table tr td {
+	line-height: 0px;
+	height: 15px;
+	margin: 0px;
+	padding: 0px;
+}
+#frequency_table tr th{
+	height: 28px;
+}
+#frequency_table {
+	border-spacing: 0px;
+}
 

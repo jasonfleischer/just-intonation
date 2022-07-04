@@ -11,7 +11,8 @@ function setup_controls(){
 			$("P1").onclick = function(){
 				model.harmonicsVolume = [1, 0];
 				audio_controller.updateHarmonicsVolumes(model.harmonicsVolume);
-				updateUIPresetButtons(1);
+				storage.set_preset_index(1);
+				updateUIPresetButtons();
 			}
 			$("P2").onclick = function() {
 				var volumeAry = [];
@@ -21,6 +22,7 @@ function setup_controls(){
 				}
 				model.harmonicsVolume = volumeAry;
 				audio_controller.updateHarmonicsVolumes(model.harmonicsVolume);
+				storage.set_preset_index(2);
 				updateUIPresetButtons(2);
 			}
 			$("P3").onclick = function() {
@@ -31,7 +33,8 @@ function setup_controls(){
 				}
 				model.harmonicsVolume = volumeAry;
 				audio_controller.updateHarmonicsVolumes(model.harmonicsVolume);
-				updateUIPresetButtons(3);
+				storage.set_preset_index(3);
+				updateUIPresetButtons();
 			}
 			$("P4").onclick = function() {
 				var volumeAry = [];
@@ -45,7 +48,8 @@ function setup_controls(){
 				}
 				model.harmonicsVolume = volumeAry;
 				audio_controller.updateHarmonicsVolumes(model.harmonicsVolume);
-				updateUIPresetButtons(4);
+				storage.set_preset_index(4);
+				updateUIPresetButtons();
 			}
 			$("P5").onclick = function() {
 				var volumeAry = [];
@@ -55,7 +59,8 @@ function setup_controls(){
 				}
 				model.harmonicsVolume = volumeAry;
 				audio_controller.updateHarmonicsVolumes(model.harmonicsVolume);
-				updateUIPresetButtons(5);
+				storage.set_preset_index(5);
+				updateUIPresetButtons();
 			}
 			$("P6").onclick = function() {
 				model.harmonicsVolume = [1, 0.286699025, 0.63513, 0.042909002, 0.2522, 0.30904, 0.25045, 0.2004, 0, 0.14836, 
@@ -63,8 +68,11 @@ function setup_controls(){
 			            0.008585879, 0.005771505, 0.004343925, 0.002141371, 0.005343231, 0.000530244, 
 			            0.004711017, 0.009014153];
 				audio_controller.updateHarmonicsVolumes(model.harmonicsVolume);
-				updateUIPresetButtons(6);
+				storage.set_preset_index(6);
+				updateUIPresetButtons();
 			}
+
+			$('P'+storage.get_preset_index(6)).click();
 		}
 	}
 
@@ -98,6 +106,7 @@ function setup_controls(){
 			var value = this.checked;
 			log.i("on "+base_id+" change: " + value);
 			model.is_just_intonation = value;
+			storage.set_is_just_intonation(value);
 			audio_controller.stop();
 			updateUIFrequencyTable();
 		});
@@ -130,6 +139,7 @@ function setup_controls(){
 				var value = parseInt(this.value);
 				log.i("on "+id+": " + value);
 				model.note_type = value;
+				storage.set_root_note(value);
 				audio_controller.stop();
 				buildMidiValueToJustIntonationFrequencyMap();
 				updateUIFrequencyTable();

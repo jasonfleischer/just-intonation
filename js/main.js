@@ -62,8 +62,6 @@ init = function() {
 	if (isSafariMobile && !isFromHomeScreen()){
 		install.showAlert();
 	}
-
-	updateUIPresetButtons(6);
 	updateUIFrequencyTable();	
 }
 
@@ -87,7 +85,8 @@ function buildMidiValueToJustIntonationFrequencyMap(){
 	}
 }
 
-updateUIPresetButtons = function(index) {
+updateUIPresetButtons = function() {
+	const index = storage.get_preset_index(6)
 	var i;
 	for (i = 1; i <= 6; i++) {
 		let elem = $('P'+i);
