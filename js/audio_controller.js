@@ -37,9 +37,7 @@ audio_controller.startNote = function(frequency, volume_percent, harmonicsVolume
 		osc.frequency.value = frequency;
 		this.updateHarmonicsVolume(osc, harmonicsVolume);
 
-		var gain = this.ctx..createGain();
-
-		
+		var gain = this.ctx.createGain();
 
 		osc.connect(gain);
 		gain.connect(this.compressorNode);
@@ -72,9 +70,9 @@ audio_controller.stopNote = function(frequency) {
 		let gain = pair[1];
 
 		var release = 0.05;
-
-		gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime - release);
-		osc.stop(this.ctx.currentTime);
+		gain.gain.setValueAtTime(gain.gain.value, this.ctx.currentTime);
+		gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + release);
+		osc.stop(this.ctx.currentTime + release);
 
 		this.frequencyToOscillatorGainPairMap.delete(frequency);
 	}

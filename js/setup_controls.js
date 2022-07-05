@@ -108,6 +108,7 @@ function setup_controls(){
 			model.is_just_intonation = value;
 			storage.set_is_just_intonation(value);
 			audio_controller.stop();
+			pianoView.clear();
 			updateUIFrequencyTable();
 		});
 		$(base_id+"_checkbox").checked = model.is_just_intonation;
@@ -141,6 +142,7 @@ function setup_controls(){
 				model.note_type = value;
 				storage.set_root_note(value);
 				audio_controller.stop();
+				pianoView.clear();
 				buildMidiValueToJustIntonationFrequencyMap();
 				updateUIFrequencyTable();
 			});
