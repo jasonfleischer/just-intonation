@@ -127,7 +127,7 @@ label {
 	width: 150px;
 }
 
-#page_name {
+.no_select {
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
