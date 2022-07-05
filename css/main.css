@@ -122,7 +122,7 @@ strong {
 }
 
 #just_intonate {
-	cursor: pointer;
+	cursor: pointer !important;
 }
 
 #ios_install_instructions p {
