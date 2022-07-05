@@ -3,7 +3,7 @@ audio_controller = {
 	ctx: {},
 	compressorNode: {},
 	masterGainNode: {},
-	frequencyToOscillatorMap: {}
+	frequencyToOscillatorGainPairMap: {}
 };
 
 audio_controller.startNote = function(frequency, volume_percent, harmonicsVolume) {
@@ -13,7 +13,7 @@ audio_controller.startNote = function(frequency, volume_percent, harmonicsVolume
 		window.AudioContext = window.AudioContext || window.webkitAudioContext;
 		this.ctx = new AudioContext();
 
-		this.frequencyToOscillatorMap = new Map();
+		this.frequencyToOscillatorGainPairMap = new Map();
 
 		this.masterGainNode = this.ctx.createGain();
 		this.masterGainNode.gain.value = volume_percent / 100;
@@ -31,17 +31,25 @@ audio_controller.startNote = function(frequency, volume_percent, harmonicsVolume
 		this.setup = true;
 	}
 
-	if(!this.frequencyToOscillatorMap.has(frequency)){
+	if(!this.frequencyToOscillatorGainPairMap.has(frequency)){
 	
 		var osc = this.ctx.createOscillator();
 		osc.frequency.value = frequency;
 		this.updateHarmonicsVolume(osc, harmonicsVolume);
 
-		osc.connect(this.compressorNode);
+		var gain = this.ctx..createGain();
 
+		
+
+		osc.connect(gain);
+		gain.connect(this.compressorNode);
+
+		var attack = 0.01;
+		gain.gain.setValueAtTime(0, this.ctx.currentTime);
+		gain.gain.linearRampToValueAtTime(1, this.ctx.currentTime + attack);
 		osc.start();
 
-		this.frequencyToOscillatorMap.set(frequency, osc);
+		this.frequencyToOscillatorGainPairMap.set(frequency, [osc, gain]);
 		return true;
 	} else {
 		log.e('already started');
@@ -51,17 +59,24 @@ audio_controller.startNote = function(frequency, volume_percent, harmonicsVolume
 
 audio_controller.stop = function(){
 	if (this.setup) {
-		for (var [freq, osc] of this.frequencyToOscillatorMap.entries()) {
+		for (var [freq, pair] of this.frequencyToOscillatorGainPairMap.entries()) {
 	  		this.stopNote(freq);
 		}
 	}
 }
 
 audio_controller.stopNote = function(frequency) {
-	if(this.frequencyToOscillatorMap.has(frequency)){
-		let osc = this.frequencyToOscillatorMap.get(frequency);
-		osc.stop(0.00001);
-		this.frequencyToOscillatorMap.delete(frequency);
+	if(this.frequencyToOscillatorGainPairMap.has(frequency)){
+		let pair = this.frequencyToOscillatorGainPairMap.get(frequency);
+		let osc = pair[0];
+		let gain = pair[1];
+
+		var release = 0.05;
+
+		gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime - release);
+		osc.stop(this.ctx.currentTime);
+
+		this.frequencyToOscillatorGainPairMap.delete(frequency);
 	}
 }
 
@@ -73,7 +88,8 @@ audio_controller.updateVolume = function(volume_percent){
 
 audio_controller.updateHarmonicsVolumes = function(harmonicsVolume){
 	if (this.setup) {
-		for (var [freq, osc] of this.frequencyToOscillatorMap.entries()) {
+		for (var [freq, pair] of this.frequencyToOscillatorGainPairMap.entries()) {
+			let osc = pair[0];
   			this.updateHarmonicsVolume(osc, harmonicsVolume);
 		}
 	}
