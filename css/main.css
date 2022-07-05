@@ -127,6 +127,13 @@ label {
 	width: 150px;
 }
 
+#page_name {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 #P1, #P2, #P3, #P4, #P5, #P6{
 	min-width: 49px;
 }
