@@ -23,10 +23,6 @@ body {
 	font-family: 'SF Display Thin', sans-serif;
 	margin: 0px;
 	padding: 0px;
-	-webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 main {
@@ -79,6 +75,13 @@ strong {
     cursor: pointer;
     text-decoration: underline;
     color: #007bff;
+}
+
+label {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .switch {
