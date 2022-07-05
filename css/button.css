@@ -12,6 +12,10 @@ button {
     background-color: var(--secondary-background-color);   
     border-radius: .22rem;
     font-family : inherit;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 @media (min-width: 800px), (min-height: 500px) { /*desktop*/
