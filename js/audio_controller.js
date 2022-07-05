@@ -46,7 +46,7 @@ audio_controller.startNote = function(frequency, volume_percent, harmonicsVolume
 		gain.gain.setValueAtTime(0, this.ctx.currentTime);
 		gain.gain.linearRampToValueAtTime(1, this.ctx.currentTime + attack);
 
-		var decay_time = 0.1;
+		var decay_time = 4;
 		var decay_amount_percent = 30;
 
 		gain.gain.linearRampToValueAtTime( 1*((100-decay_amount_percent)/100), this.ctx.currentTime + attack + decay_time);
