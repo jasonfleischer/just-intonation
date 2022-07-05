@@ -1,5 +1,6 @@
 .switch {
     position: absolute;
+    cursor: pointer;
     display: inline-block;
     width: 52px;
     height: 30px;
