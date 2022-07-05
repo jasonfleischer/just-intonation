@@ -77,6 +77,10 @@ strong {
     color: #007bff;
 }
 
+.switch {
+	pointer-events: none; /* row click */
+}
+
 .highlighted {
     color: #007bff;
     font-weight: bold;

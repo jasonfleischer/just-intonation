@@ -93,12 +93,9 @@ function setup_controls(){
 	setupJustIntonationSwitch();
 	function setupJustIntonationSwitch() {
 		const base_id = "just_intonate" 
-		/*$(base_id).addEventListener("click", function(e){
+		$(base_id).addEventListener("click", function(e){
 			$(base_id+"_checkbox").click();
-
-
-
-		});*/
+		});
 		$(base_id+"_checkbox_switch").addEventListener('keyup', function(e) {
 			if (event.code === 'Space' || event.code === 'Enter') $(base_id+"_checkbox").click();
 		});
