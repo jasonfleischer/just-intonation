@@ -102,6 +102,10 @@ strong {
 	cursor: pointer;
 }
 
+.checkbox-row, .checkbox-row label{
+	cursor: pointer !important;
+}
+
 .checkbox-row span:first-child{
 	
 	height: 100%;
@@ -119,10 +123,6 @@ strong {
 
 #P1, #P2, #P3, #P4, #P5, #P6{
 	min-width: 49px;
-}
-
-#just_intonate {
-	cursor: pointer !important;
 }
 
 #ios_install_instructions p {
