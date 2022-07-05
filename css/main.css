@@ -101,8 +101,7 @@ strong {
 	border: none;
 	cursor: pointer;
 }
-
-.checkbox-row, .checkbox-row label{
+.checkbox-row label{
 	cursor: pointer !important;
 }
 
